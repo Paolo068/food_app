@@ -1,0 +1,7 @@
+{
+    "editor.codeActionsOnSave": {
+        "formatOnSave": "explicit",
+        "source.fixAll": "explicit",
+        "source.organizeImports": "always"
+    }
+}

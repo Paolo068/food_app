@@ -3,11 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_app/features/home/home_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import 'core/constants/styles_constants.dart';
+import 'core/theme/colors.dart';
 
 void main() async {
   await Hive.initFlutter();
   await Hive.openBox('appBox');
+  // await Hive.openBox('cartBox');
   runApp(const ProviderScope(child: MyApp()));
 }
 

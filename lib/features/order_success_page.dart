@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_app/core/constants/styles_constants.dart';
+import 'package:food_app/core/theme/colors.dart';
 import 'package:food_app/core/shared_widgets/button.dart';
 import 'package:gap/gap.dart';
 

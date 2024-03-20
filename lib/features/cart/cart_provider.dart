@@ -1,18 +1,25 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:food_app/core/models/cart_model.dart';
 
-Box box = Hive.box('appBox');
-final cartItemQtyProvider = StateProvider<int>((ref) => 1);
+final cartItemsProvider = NotifierProvider<CartItemsNotifier, List<CartModel>>(CartItemsNotifier.new);
 
-final cartListProvider = NotifierProvider<CartListNotifier, List>(CartListNotifier.new);
-
-class CartListNotifier extends Notifier<List> {
-  addToCart(List value) {
+class CartItemsNotifier extends Notifier<List<CartModel>> {
+  addToCart(CartModel value) {
     state = [...state, value];
   }
 
+  removeItem(int index) {
+    state.removeAt(index);
+    ref.notifyListeners();
+  }
+
+  updateItem(int index, CartModel value) {
+    state[index] = value;
+    ref.notifyListeners();
+  }
+
   @override
-  build() {
+  List<CartModel> build() {
     return [];
   }
 }

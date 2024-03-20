@@ -1,32 +1,37 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+import 'package:food_app/features/product_addon/addon_model.dart';
 
 class CartModel {
   String name;
-  int itemQty;
+  int quantity;
   int price;
-  List<String> addons;
+  List<String> description;
+  List<AddonModel> addons;
   String image;
   CartModel({
     required this.name,
-    required this.itemQty,
+    required this.quantity,
     required this.price,
+    required this.description,
     required this.addons,
     required this.image,
   });
 
   CartModel copyWith({
     String? name,
-    int? itemQty,
+    int? quantity,
     int? price,
-    List<String>? addons,
+    List<String>? description,
+    List<AddonModel>? addons,
     String? image,
   }) {
     return CartModel(
       name: name ?? this.name,
-      itemQty: itemQty ?? this.itemQty,
+      quantity: quantity ?? this.quantity,
       price: price ?? this.price,
+      description: description ?? this.description,
       addons: addons ?? this.addons,
       image: image ?? this.image,
     );
@@ -35,9 +40,10 @@ class CartModel {
   Map<String, dynamic> toMap() {
     return {
       'name': name,
-      'itemQty': itemQty,
+      'quantity': quantity,
       'price': price,
-      'addons': addons,
+      'description': description,
+      'addons': addons.map((x) => x.toMap()).toList(),
       'image': image,
     };
   }
@@ -45,9 +51,10 @@ class CartModel {
   factory CartModel.fromMap(Map<String, dynamic> map) {
     return CartModel(
       name: map['name'] ?? '',
-      itemQty: map['itemQty']?.toInt() ?? 0,
+      quantity: map['quantity']?.toInt() ?? 0,
       price: map['price']?.toInt() ?? 0,
-      addons: List<String>.from(map['addons']),
+      description: List<String>.from(map['description']),
+      addons: List<AddonModel>.from(map['addons']?.map((x) => AddonModel.fromMap(x))),
       image: map['image'] ?? '',
     );
   }
@@ -58,7 +65,7 @@ class CartModel {
 
   @override
   String toString() {
-    return 'CartModel(name: $name, itemQty: $itemQty, price: $price, addons: $addons, image: $image)';
+    return 'CartModel(name: $name, quantity: $quantity, price: $price, description: $description, addons: $addons, image: $image)';
   }
 
   @override
@@ -67,14 +74,15 @@ class CartModel {
 
     return other is CartModel &&
         other.name == name &&
-        other.itemQty == itemQty &&
+        other.quantity == quantity &&
         other.price == price &&
+        listEquals(other.description, description) &&
         listEquals(other.addons, addons) &&
         other.image == image;
   }
 
   @override
   int get hashCode {
-    return name.hashCode ^ itemQty.hashCode ^ price.hashCode ^ addons.hashCode ^ image.hashCode;
+    return name.hashCode ^ quantity.hashCode ^ price.hashCode ^ description.hashCode ^ addons.hashCode ^ image.hashCode;
   }
 }

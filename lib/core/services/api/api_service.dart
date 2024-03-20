@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:food_app/utils.dart';
 
 import '../../constants/app_constants.dart';
@@ -37,10 +39,14 @@ class DioClient {
         onReceiveProgress: onReceiveProgress,
       );
       return response;
-    } on SocketException catch (e) {
-      throw SocketException(e.toString());
-    } on FormatException catch (_) {
+    } on SocketException {
+      throw const Text('Internet connection error: Try to enable your data');
+    } on FormatException {
       throw const FormatException("Unable to process the data");
+    } on ServerSocket {
+      throw const Text('Server error: Please retry in few seconds ');
+    } on PlatformException catch (e) {
+      throw (e.toString());
     } catch (e) {
       rethrow;
     }

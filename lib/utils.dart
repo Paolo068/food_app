@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:food_app/core/constants/styles_constants.dart';
+import 'package:food_app/core/theme/colors.dart';
 import 'package:logger/logger.dart';
 
 logInfo(Object message) {

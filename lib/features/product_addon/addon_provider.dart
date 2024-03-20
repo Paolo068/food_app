@@ -1,20 +1,22 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:food_app/features/product_addon/addon_model.dart';
+import 'package:food_app/utils.dart';
 
-final addonProvider = NotifierProvider<AddonNotifier, List<String>>(AddonNotifier.new);
+/// Provide the list of addons. Riverpod Provider are lazy loaded. So this provider must be called first for FilterChip onSelected function to work properly
+final addonProvider = NotifierProvider<AddonNotifier, List<AddonModel>>(AddonNotifier.new);
 
-class AddonNotifier extends Notifier<List<String>> {
-  addAddon(String value) {
+class AddonNotifier extends Notifier<List<AddonModel>> {
+  addAddon(AddonModel value) {
     state = [...state, value];
-    // ref.notifyListeners();
+    logInfo('Addon Added ==>: ${value.name}');
   }
 
-  removeAddon(String value) {
+  removeAddon(AddonModel value) {
     state = state.where((element) => element != value).toList();
-    // ref.notifyListeners();
   }
 
   @override
-  List<String> build() {
+  List<AddonModel> build() {
     return [];
   }
 }

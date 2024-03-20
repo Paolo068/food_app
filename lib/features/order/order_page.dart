@@ -6,9 +6,9 @@ import 'package:gap/gap.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../core/constants/assets_constants.dart';
-import '../../core/constants/styles_constants.dart';
 import '../../core/shared_widgets/button.dart';
 import '../../core/shared_widgets/textfield.dart';
+import '../../core/theme/colors.dart';
 import '../location/location_provider.dart';
 
 class OrderPage extends ConsumerStatefulWidget {
@@ -124,7 +124,7 @@ class _OrderPageState extends ConsumerState<OrderPage> {
                   ),
                   const Gap(30),
                   AppButton(
-                    text: 'Proceed',
+                    text: cashOnDelivery ? 'Send my order' : 'Pay now',
                     onPressed: () {
                       ref.invalidate(locationProvider);
                     },

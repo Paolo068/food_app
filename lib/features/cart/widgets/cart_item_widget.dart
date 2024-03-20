@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../core/constants/styles_constants.dart';
+import '../../../core/theme/colors.dart';
 
 class CartItemWidget extends StatelessWidget {
   final String? name;
@@ -10,7 +10,7 @@ class CartItemWidget extends StatelessWidget {
   final int? quantity;
   final String? imageUrl;
   final String? addonList;
-  final String? description;
+  final List? description;
   final VoidCallback? onTap;
   final VoidCallback? onDelete;
   const CartItemWidget(
@@ -46,11 +46,14 @@ class CartItemWidget extends StatelessWidget {
                       fontSize: 20,
                     ),
                   ),
-                  Text(
-                    maxLines: 2,
-                    addonList!.substring(1, addonList!.length - 1),
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(color: Pallete.grey, fontSize: 14),
+                  SizedBox(
+                    width: 150,
+                    child: Text(
+                      maxLines: 2,
+                      addonList!.substring(1, addonList!.length - 1),
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(color: Pallete.grey, fontSize: 14),
+                    ),
                   ),
                 ],
               ),
@@ -77,19 +80,6 @@ class CartItemWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Padding(
-            //   padding: const EdgeInsets.only(top: 8.0),
-            //   child: Wrap(
-            //     children: List.generate(
-            //       5,
-            //       (index) => Icon(
-            //         Icons.star_border_rounded,
-            //         color: Colors.orange.shade200,
-            //         size: 15,
-            //       ),
-            //     ),
-            //   ),
-            // ),
             const Spacer(),
             Flex(
               direction: Axis.horizontal,
@@ -108,12 +98,13 @@ class CartItemWidget extends StatelessWidget {
                 ),
                 const Gap(20),
                 CircleAvatar(
-                  radius: 11,
-                  backgroundColor: Pallete.darkBlue,
+                  radius: 10,
+                  backgroundColor: Pallete.orange,
                   child: Text(
                     '$quantity ',
+                    textAlign: TextAlign.center,
                     // style: AppStyles.bodyText.copyWith(color: Pallete.white),
-                    style: TextStyle(color: Pallete.white),
+                    style: TextStyle(color: Pallete.white, fontSize: 13),
                   ),
                 ),
               ],

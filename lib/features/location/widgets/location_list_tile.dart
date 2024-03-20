@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:food_app/core/constants/assets_constants.dart';
 
-import '../../../core/constants/styles_constants.dart';
+import '../../../core/theme/colors.dart';
 
 class LocationListTile extends StatelessWidget {
   const LocationListTile({

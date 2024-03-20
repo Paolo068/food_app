@@ -7,7 +7,7 @@ import 'package:food_app/core/shared_widgets/textfield.dart';
 import 'package:food_app/features/order/order_page.dart';
 import 'package:gap/gap.dart';
 
-import '../../core/constants/styles_constants.dart';
+import '../../core/theme/colors.dart';
 import '../../core/shared_widgets/loader.dart';
 import '../../utils.dart';
 import 'location_provider.dart';
